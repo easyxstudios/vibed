@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "166341893891",
+    "project_id": "vibed-gcloud",
+    "storage_bucket": "vibed-gcloud.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:166341893891:android:9449522d893064bdeed336",
+        "android_client_info": {
+          "package_name": "com.easy.vibed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "166341893891-c7qs5qq3eljmvkricuuj1v2rtgbs12co.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnRfhu47w8mwuB1_XlReERk9J-uAAOn3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "166341893891-c7qs5qq3eljmvkricuuj1v2rtgbs12co.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "166341893891-elqi5plrlreauj0te9nku3i1ag9g13o1.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.easy.vibed"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
