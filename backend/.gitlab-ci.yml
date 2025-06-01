@@ -1,0 +1,37 @@
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  image: node:18
+  allow_failure: false
+  before_script:
+    - cd functions
+    - time npm ci
+  script:
+    - npm run test
+  cache:
+    key: build-cache
+    paths:
+      - functions/node_modules/
+    policy: push
+  coverage: '/Lines \W+: (\d+.\d+)%.*/'
+
+deploy:production:
+  stage: deploy
+  needs: [test]
+  image: node:18
+  before_script:
+    - cd functions
+    - time npm ci
+    - npm install -g firebase-tools
+  script:
+    # - firebase use production 
+    - firebase deploy --only firestore:indexes --token " $FIREBASE_CI_TOKEN " -P production
+    - firebase deploy --only firestore:rules --token " $FIREBASE_CI_TOKEN " -P production
+    - firebase deploy --only storage --token " $FIREBASE_CI_TOKEN " -P production
+    - firebase deploy --only functions --token " $FIREBASE_CI_TOKEN " -P production
+  only: 
+    - main
+  when: manual 

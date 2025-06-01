@@ -1,0 +1,41 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    match /users/{id} {
+      allow read, update, delete: if request.auth.uid != null && request.auth.uid == id;
+      allow create: if false;
+    }
+    match /users/{id}/{document=**} { 
+    	allow read, update, create, delete: if request.auth.uid != null && request.auth.uid == id;
+    }
+    match /subscriptions/{userId} {
+      allow read: if request.auth.uid != null && request.auth.uid == userId;
+      allow create, update, delete: if false;
+    }
+    match /feature_requests/{featureId} {
+      allow read: if request.auth.uid != null;
+      allow create, update, delete: if false;
+    }
+    match /feature_requests/{featureId}/votes/{id} {
+      allow create: if request.auth.uid != null;
+      allow read, update, delete: if request.auth.uid != null && request.auth.uid == resource.data.userId;
+    }
+    // Collection group rules for votes
+    match /{path=**}/votes/{voteId} {
+      allow create: if request.auth.uid != null;
+      allow read: if request.auth.uid != null && request.auth.uid == resource.data.userId ;
+      allow update, delete: if request.auth.uid != null && request.auth.uid == resource.data.userId;
+    }
+    match /user_feature_requests/{id} {
+      allow create: if request.auth.uid != null;
+      allow read, update, delete: if request.auth.uid != null && request.auth.uid == resource.data.userId;
+    }
+
+    // TEMPORARY DEVELOPMENT RULES - REMOVE IN PRODUCTION!
+    // Allow all read/write for development and testing
+    match /{document=**} {
+      allow read, write: if true; // WARNING: This allows full access!
+    }
+  }
+}
