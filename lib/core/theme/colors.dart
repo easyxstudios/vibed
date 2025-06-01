@@ -15,6 +15,15 @@ class ApparenceKitColors extends ThemeExtension<ApparenceKitColors> {
   final Color grey3;
   final Color error;
 
+  // Bottom bar specific colors
+  final Color bottomBarActive;
+  final Color bottomBarOnActive;
+
+  // Deck card specific colors
+  final Color deckCardFireBadge;
+  final Color deckCardUnlockButton;
+  final Color deckCardSubtitle;
+
   const ApparenceKitColors({
     required this.primary,
     required this.onPrimary,
@@ -26,33 +35,48 @@ class ApparenceKitColors extends ThemeExtension<ApparenceKitColors> {
     required this.grey1,
     required this.grey2,
     required this.grey3,
+    required this.bottomBarActive,
+    required this.bottomBarOnActive,
+    required this.deckCardFireBadge,
+    required this.deckCardUnlockButton,
+    required this.deckCardSubtitle,
   });
 
   factory ApparenceKitColors.light() => const ApparenceKitColors(
-        primary: Color(0xFF1E88E5),
-        onPrimary: Color(0xFFFFFFFF),
-        background: Color(0xFFFFFFFF),
-        onBackground: Color(0xFF000000),
-        surface: Color(0xFFFAFAFA),
-        onSurface: Color(0xFF000000),
-        error: Color(0xFFB00020),
-        grey1: Color(0xFFBEC1C3),
-        grey2: Color(0xFF7D8488),
-        grey3: Color(0xFF263238),
-      );
+    primary: Color(0xFF1E88E5),
+    onPrimary: Color(0xFFFFFFFF),
+    background: Color(0xFFFFFFFF),
+    onBackground: Color(0xFF000000),
+    surface: Color(0xFFFAFAFA),
+    onSurface: Color(0xFF000000),
+    error: Color(0xFFB00020),
+    grey1: Color(0xFFBEC1C3),
+    grey2: Color(0xFF7D8488),
+    grey3: Color(0xFF263238),
+    bottomBarActive: Color(0xFF99DE43),
+    bottomBarOnActive: Color(0xFF000000),
+    deckCardFireBadge: Color(0xFFE44513),
+    deckCardUnlockButton: Color(0xFF8439FF),
+    deckCardSubtitle: Color(0x66FFFFFF),
+  );
 
   factory ApparenceKitColors.dark() => const ApparenceKitColors(
-        primary: Color(0xFF1E88E5),
-        onPrimary: Color(0xFFFFFFFF),
-        background: Color(0xFF0A0A0A),
-        onBackground: Color(0xFFFAFAFA),
-        surface: Color(0xFF161616),
-        onSurface: Color(0xFFFFFFFF),
-        error: Color(0xFFCF6679),
-        grey1: Color(0xFF263238),
-        grey2: Color(0xFF7D8488),
-        grey3: Color(0xFFBEC1C3),
-      );
+    primary: Color(0xFF1E88E5),
+    onPrimary: Color(0xFFFFFFFF),
+    background: Color(0xFF0A0A0A),
+    onBackground: Color(0xFFFAFAFA),
+    surface: Color(0xFF161616),
+    onSurface: Color(0xFFFFFFFF),
+    error: Color(0xFFCF6679),
+    grey1: Color(0xFF263238),
+    grey2: Color(0xFF7D8488),
+    grey3: Color(0xFFBEC1C3),
+    bottomBarActive: Color(0xFF99DE43),
+    bottomBarOnActive: Color(0xFF000000),
+    deckCardFireBadge: Color(0xFFE44513),
+    deckCardUnlockButton: Color(0xFF8439FF),
+    deckCardSubtitle: Color(0x66FFFFFF),
+  );
 
   @override
   ThemeExtension<ApparenceKitColors> copyWith({
@@ -66,6 +90,11 @@ class ApparenceKitColors extends ThemeExtension<ApparenceKitColors> {
     Color? grey1,
     Color? grey2,
     Color? grey3,
+    Color? bottomBarActive,
+    Color? bottomBarOnActive,
+    Color? deckCardFireBadge,
+    Color? deckCardUnlockButton,
+    Color? deckCardSubtitle,
   }) {
     return ApparenceKitColors(
       primary: primary ?? this.primary,
@@ -78,6 +107,11 @@ class ApparenceKitColors extends ThemeExtension<ApparenceKitColors> {
       grey1: grey1 ?? this.grey1,
       grey2: grey2 ?? this.grey2,
       grey3: grey3 ?? this.grey3,
+      bottomBarActive: bottomBarActive ?? this.bottomBarActive,
+      bottomBarOnActive: bottomBarOnActive ?? this.bottomBarOnActive,
+      deckCardFireBadge: deckCardFireBadge ?? this.deckCardFireBadge,
+      deckCardUnlockButton: deckCardUnlockButton ?? this.deckCardUnlockButton,
+      deckCardSubtitle: deckCardSubtitle ?? this.deckCardSubtitle,
     );
   }
 
@@ -99,6 +133,27 @@ class ApparenceKitColors extends ThemeExtension<ApparenceKitColors> {
       grey1: Color.lerp(grey1, other.grey1, t)!,
       grey2: Color.lerp(grey2, other.grey2, t)!,
       grey3: Color.lerp(grey3, other.grey3, t)!,
+      bottomBarActive: Color.lerp(bottomBarActive, other.bottomBarActive, t)!,
+      bottomBarOnActive: Color.lerp(
+        bottomBarOnActive,
+        other.bottomBarOnActive,
+        t,
+      )!,
+      deckCardFireBadge: Color.lerp(
+        deckCardFireBadge,
+        other.deckCardFireBadge,
+        t,
+      )!,
+      deckCardUnlockButton: Color.lerp(
+        deckCardUnlockButton,
+        other.deckCardUnlockButton,
+        t,
+      )!,
+      deckCardSubtitle: Color.lerp(
+        deckCardSubtitle,
+        other.deckCardSubtitle,
+        t,
+      )!,
     );
   }
 }

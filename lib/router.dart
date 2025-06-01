@@ -16,9 +16,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
-final goRouterProvider = Provider<GoRouter>(
-  (ref) => generateRouter(),
-);
+final goRouterProvider = Provider<GoRouter>((ref) => generateRouter());
 
 extension GoRouterRiverpod on Ref {
   GoRouter get goRouter => read(goRouterProvider);
@@ -36,10 +34,8 @@ GoRouter generateRouter({
     navigatorKey: navigatorKey,
     errorBuilder: (context, state) => const PageNotFound(),
     observers: [
-      AnalyticsObserver(
-        analyticsApi: MixpanelAnalyticsApi.instance(),
-      ),
-      
+      AnalyticsObserver(analyticsApi: MixpanelAnalyticsApi.instance()),
+
       ...?observers,
     ],
     routes: [
@@ -99,4 +95,3 @@ GoRouter generateRouter({
     ],
   );
 }
-

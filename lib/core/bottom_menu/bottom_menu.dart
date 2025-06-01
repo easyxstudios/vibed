@@ -1,4 +1,5 @@
 import 'package:vibed/core/bottom_menu/bottom_router.dart';
+import 'package:vibed/core/bottom_menu/vibed_bottom_bar.dart';
 import 'package:vibed/core/theme/extensions/theme_extension.dart';
 import 'package:vibed/core/widgets/responsive_layout.dart';
 import 'package:bart/bart.dart' as bart;
@@ -13,10 +14,7 @@ import 'package:flutter/services.dart';
 class BottomMenu extends StatelessWidget {
   final String? initialRoute;
 
-  const BottomMenu({
-    super.key,
-    this.initialRoute,
-  });
+  const BottomMenu({super.key, this.initialRoute});
 
   @override
   Widget build(BuildContext context) {
@@ -25,10 +23,13 @@ class BottomMenu extends StatelessWidget {
       child: ResponsiveLayout(
         small: bart.BartScaffold(
           routesBuilder: subRoutes,
-          bottomBar: bart.BartBottomBar.adaptive(),
+          bottomBar: bart.BartBottomBar.custom(
+            bottomBarFactory: const VibedBottomBar(),
+          ),
           initialRoute: initialRoute,
           scaffoldOptions: bart.ScaffoldOptions(
             backgroundColor: context.colors.background,
+            extendBody: true,
           ),
           onRouteChanged: (route) {
             // If you want to log tab events to analytics
@@ -37,14 +38,15 @@ class BottomMenu extends StatelessWidget {
         ),
         medium: bart.BartScaffold(
           routesBuilder: subRoutes,
-          bottomBar: bart.BartBottomBar.adaptive(),
+          bottomBar: bart.BartBottomBar.custom(
+            bottomBarFactory: const VibedBottomBar(),
+          ),
           initialRoute: initialRoute,
           scaffoldOptions: bart.ScaffoldOptions(
             backgroundColor: context.colors.background,
+            extendBody: true,
           ),
-          sideBarOptions: bart.RailSideBarOptions(
-            extended: true,
-          ),
+          sideBarOptions: bart.RailSideBarOptions(extended: true),
         ),
       ),
     );
