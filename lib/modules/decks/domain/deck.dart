@@ -20,6 +20,10 @@ sealed class Deck with _$Deck {
 
   const Deck._();
 
+  // Computed properties for fire badge
+  int get totalFireCount => 3; // Always show 3 fire slots
+  int get activeFireCount => fireCount; // Active fires based on fireCount
+
   factory Deck.fromEntity(DeckEntity entity) {
     return Deck(
       id: entity.id ?? '',

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:vibed/core/theme/extensions/theme_extension.dart';
 import 'package:vibed/modules/decks/domain/deck.dart';
+import 'package:vibed/modules/decks/ui/widgets/fire_badge.dart';
 
 // DeckCard constants
 const double _kCardWidth = 144.0;
@@ -8,13 +9,9 @@ const double _kCardHeight = 184.0;
 const double _kImageHeight = 144.0;
 const double _kCardBorderRadius = 20.0;
 const double _kPlayButtonBorderRadius = 42.0;
-const double _kFireBadgeBorderRadius = 24.0;
 const double _kGap = 8.0;
-const double _kFireBadgePadding = 6.0;
-const double _kFireBadgeHorizontalPadding = 8.0;
 const double _kPlayButtonPadding = 8.0;
 const double _kPlayButtonGap = 4.0;
-const double _kFireIconSize = 12.0;
 const double _kPlayIconSize = 16.0;
 
 // Text styles constants
@@ -58,7 +55,7 @@ class DeckCard extends StatelessWidget {
       child: Stack(
         children: [
           _buildBackgroundImage(),
-          _buildFireBadge(context),
+          _buildFireBadgePositioned(),
           if (deck.isLocked) _buildUnlockButton(context),
         ],
       ),
@@ -79,38 +76,11 @@ class DeckCard extends StatelessWidget {
     );
   }
 
-  Widget _buildFireBadge(BuildContext context) {
+  Widget _buildFireBadgePositioned() {
     return Positioned(
       top: _kGap,
       left: _kGap,
-      child: Container(
-        decoration: BoxDecoration(
-          color: context.colors.deckCardFireBadge,
-          borderRadius: BorderRadius.circular(_kFireBadgeBorderRadius),
-        ),
-        padding: const EdgeInsets.symmetric(
-          vertical: _kFireBadgePadding,
-          horizontal: _kFireBadgeHorizontalPadding,
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: List.generate(
-            deck.fireCount,
-            (index) => Padding(
-              padding: EdgeInsets.only(
-                right: index < deck.fireCount - 1 ? _kPlayButtonGap : 0,
-              ),
-              child: Icon(
-                Icons.local_fire_department,
-                size: _kFireIconSize,
-                color: index < deck.fireCount - 1
-                    ? Colors.white
-                    : Colors.white.withOpacity(0.2),
-              ),
-            ),
-          ),
-        ),
-      ),
+      child: FireBadge(totalFireCount: 3, activeFireCount: deck.fireCount),
     );
   }
 
